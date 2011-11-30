@@ -1,0 +1,3 @@
+Click the chest you want to switch view-only mode=Cliquez sur le coffre que vous voulez proteger
+This chest can now only be viewed=Ce coffre peut etre visite mais rien ne peut y etre pris
+This chest is not view-only anymore=Ce coffre n'est plus protege
