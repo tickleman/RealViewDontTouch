@@ -1,0 +1,11 @@
+name: RealViewDontTouch
+main: fr.crafter.tickleman.realviewdonttouch.RealViewDontTouch
+version: 0.01
+website: http://plugins.crafter.fr/tickleman/RealViewDontTouch/
+author: tickleman
+depend: []
+softdepend: [Spout]
+commands:
+  viewonly:
+    description: Content can only be viewed, not touched
+    usage: Click the chest you want to be protected
