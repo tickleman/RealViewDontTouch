@@ -31,6 +31,7 @@ public class RealBlockListener extends BlockListener
 				} else {
 					player.sendMessage(plugin.tr("This chest is not view-only anymore"));
 				}
+				plugin.getWaitForClick().remove(player);
 			}
 		}
 	}

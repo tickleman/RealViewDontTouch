@@ -98,13 +98,13 @@ public class ViewOnlyBlockList
 	{
 		String loc = RealLocation.getId(location);
 		if (list.contains(loc)) {
-			list.add(loc);
-			save();
-			return true;
-		} else {
 			list.remove(loc);
 			save();
 			return false;
+		} else {
+			list.add(loc);
+			save();
+			return true;
 		}
 	}
 

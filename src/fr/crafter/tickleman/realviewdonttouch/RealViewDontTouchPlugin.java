@@ -15,7 +15,7 @@ import fr.crafter.tickleman.realplugin.RealPlugin;
 public class RealViewDontTouchPlugin extends RealPlugin
 {
 
-	ViewOnlyBlockList blockList = new ViewOnlyBlockList(this);
+	ViewOnlyBlockList blockList;
 
 	private HashSet<Player> waitForClick = new HashSet<Player>();
 
@@ -59,6 +59,7 @@ public class RealViewDontTouchPlugin extends RealPlugin
 	public void onEnable()
 	{
 		super.onEnable();
+		blockList = new ViewOnlyBlockList(this);
 		blockList.load();
 		// register events
 		RealBlockListener     blockListener     = new RealBlockListener(this);
