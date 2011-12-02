@@ -71,6 +71,7 @@ public class RealViewDontTouchPlugin extends RealPlugin
 		pm.registerEvent(Event.Type.BLOCK_DAMAGE,    blockListener,     Event.Priority.Monitor, this);
 		pm.registerEvent(Event.Type.BLOCK_FADE,      blockListener,     Event.Priority.Monitor, this);
 		pm.registerEvent(Event.Type.BLOCK_IGNITE,    blockListener,     Event.Priority.Monitor, this);
+		pm.registerEvent(Event.Type.BLOCK_PLACE,     blockListener,     Event.Priority.Monitor, this);
 		pm.registerEvent(Event.Type.BLOCK_SPREAD,    blockListener,     Event.Priority.Monitor, this);
 		pm.registerEvent(Event.Type.CUSTOM_EVENT,    inventoryListener, Event.Priority.Normal,  this);
 		pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener,    Priority.Normal,        this);

@@ -80,6 +80,13 @@ public class RealLocation extends Location
 		return location;
 	}
 
+	//------------------------------------------------------------------------------------- neightbor
+	public static Location neighbor(Location location)
+	{
+		RealLocation realLocation = new RealLocation(location);
+		return (Location)realLocation.neighbor();
+	}
+
 	//------------------------------------------------------------------------------------ toLocation
 	public Location toLocation()
 	{

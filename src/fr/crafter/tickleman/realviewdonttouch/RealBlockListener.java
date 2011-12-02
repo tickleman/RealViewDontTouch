@@ -11,7 +11,10 @@ import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockListener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
+
+import fr.crafter.tickleman.realplugin.RealLocation;
 
 //############################################################################### RealBlockListener
 public class RealBlockListener extends BlockListener
@@ -81,6 +84,24 @@ public class RealBlockListener extends BlockListener
 	public void onBlockIgnite(BlockIgniteEvent event)
 	{
 		autoRemoveBlock(event);
+	}
+
+	//---------------------------------------------------------------------------------- onBlockPlace
+	@Override
+	public void onBlockPlace(BlockPlaceEvent event)
+	{
+		Block block = event.getBlock();
+		if (block.getType().equals(Material.CHEST)) {
+			Location location = block.getLocation();
+			Location neighbor = RealLocation.neighbor(location);
+			if ((neighbor != null) && plugin.getBlockList().isViewOnly(neighbor)) {
+				// block placed near a view-only block : view-only this block too
+				plugin.getBlockList().put(location);
+			} else if (plugin.getBlockList().isViewOnly(location)) {
+				// block placed into a ghost view-only block place : remove view-only on this block
+				plugin.getBlockList().delete(location);
+			}
+		}
 	}
 
 	//--------------------------------------------------------------------------------- onBlockSpread
