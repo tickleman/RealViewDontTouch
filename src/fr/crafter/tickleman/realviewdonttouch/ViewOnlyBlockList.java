@@ -40,6 +40,7 @@ public class ViewOnlyBlockList
 	public void delete(Location location)
 	{
 		list.remove(RealLocation.getId(location));
+		save();
 	}
 
 	//------------------------------------------------------------------------------------ isViewOnly
@@ -77,7 +78,7 @@ public class ViewOnlyBlockList
 	}
 
 	//------------------------------------------------------------------------------------------ save
-	public void save()
+	private void save()
 	{
 		BufferedWriter writer = null;
 		try {
@@ -96,13 +97,16 @@ public class ViewOnlyBlockList
 	//----------------------------------------------------------------------------------- switchState
 	public boolean switchState(Location location)
 	{
-		String loc = RealLocation.getId(location);
+		RealLocation realLocation = new RealLocation(location);
+		String loc = realLocation.getId();
 		if (list.contains(loc)) {
 			list.remove(loc);
+			if (realLocation.neighbor() != null) list.remove(realLocation.neighbor().getId());
 			save();
 			return false;
 		} else {
 			list.add(loc);
+			if (realLocation.neighbor() != null) list.add(realLocation.neighbor().getId());
 			save();
 			return true;
 		}

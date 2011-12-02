@@ -80,4 +80,10 @@ public class RealLocation extends Location
 		return location;
 	}
 
+	//------------------------------------------------------------------------------------ toLocation
+	public Location toLocation()
+	{
+		return (Location)this;
+	}
+
 }
