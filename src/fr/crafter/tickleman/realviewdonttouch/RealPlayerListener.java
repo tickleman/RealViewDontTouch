@@ -3,6 +3,7 @@ package fr.crafter.tickleman.realviewdonttouch;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -24,16 +25,18 @@ public class RealPlayerListener extends PlayerListener
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
-		Block block = event.getClickedBlock();
-		Player player = event.getPlayer();
-		if ((player instanceof Player) && block.getType().equals(Material.CHEST)) {
-			if (plugin.getWaitForClick().contains(player)) {
-				if (plugin.getBlockList().switchState(block.getLocation())) {
-					player.sendMessage(plugin.tr("This chest can now only be viewed"));
-				} else {
-					player.sendMessage(plugin.tr("This chest is not view-only anymore"));
+		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+			Block block = event.getClickedBlock();
+			Player player = event.getPlayer();
+			if ((player instanceof Player) && (block != null) && block.getType().equals(Material.CHEST)) {
+				if (plugin.getWaitForClick().contains(player)) {
+					if (plugin.getBlockList().switchState(block.getLocation())) {
+						player.sendMessage(plugin.tr("This chest can now only be viewed"));
+					} else {
+						player.sendMessage(plugin.tr("This chest is not view-only anymore"));
+					}
+					plugin.getWaitForClick().remove(player);
 				}
-				plugin.getWaitForClick().remove(player);
 			}
 		}
 	}
