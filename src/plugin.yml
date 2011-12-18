@@ -1,6 +1,6 @@
 name: RealViewDontTouch
 main: fr.crafter.tickleman.realviewdonttouch.RealViewDontTouchPlugin
-version: 0.05
+version: 0.06
 website: http://plugins.crafter.fr/tickleman/RealViewDontTouch/
 author: tickleman
 depend: []
