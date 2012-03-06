@@ -5,8 +5,6 @@ import java.util.HashSet;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.event.Event.Priority;
 import org.bukkit.plugin.PluginManager;
 
 import fr.crafter.tickleman.realplugin.RealPlugin;
@@ -66,17 +64,9 @@ public class RealViewDontTouchPlugin extends RealPlugin
 		RealInventoryListener inventoryListener = new RealInventoryListener(this);
 		RealPlayerListener    playerListener    = new RealPlayerListener(this);
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvent(Event.Type.BLOCK_BREAK,     blockListener,     Event.Priority.Lowest,  this);
-		pm.registerEvent(Event.Type.BLOCK_BURN,      blockListener,     Event.Priority.Lowest,  this);
-		pm.registerEvent(Event.Type.BLOCK_DAMAGE,    blockListener,     Event.Priority.Lowest,  this);
-		pm.registerEvent(Event.Type.BLOCK_FADE,      blockListener,     Event.Priority.Lowest,  this);
-		pm.registerEvent(Event.Type.BLOCK_IGNITE,    blockListener,     Event.Priority.Lowest,  this);
-		pm.registerEvent(Event.Type.BLOCK_PLACE,     blockListener,     Event.Priority.Lowest,  this);
-		pm.registerEvent(Event.Type.BLOCK_SPREAD,    blockListener,     Event.Priority.Lowest,  this);
-		pm.registerEvent(Event.Type.CUSTOM_EVENT,    inventoryListener, Event.Priority.Lowest, this);
-		pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener,    Priority.Lowest,        this);
-		pm.registerEvent(Event.Type.PLAYER_LOGIN,    playerListener,    Priority.Lowest,        this);
-		pm.registerEvent(Event.Type.PLAYER_QUIT,     playerListener,    Priority.Lowest,        this);
+		pm.registerEvents(blockListener, this);
+		pm.registerEvents(inventoryListener, this);
+		pm.registerEvents(playerListener, this);
 	}
 
 }

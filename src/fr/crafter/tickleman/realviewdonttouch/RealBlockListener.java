@@ -4,20 +4,22 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
-import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 
 import fr.crafter.tickleman.realplugin.RealLocation;
 
 //############################################################################### RealBlockListener
-public class RealBlockListener extends BlockListener
+public class RealBlockListener implements Listener
 {
 
 	RealViewDontTouchPlugin plugin;
@@ -41,21 +43,21 @@ public class RealBlockListener extends BlockListener
 	}
 
 	//---------------------------------------------------------------------------------- onBlockBreak
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockBreak(BlockBreakEvent event)
 	{
 		autoRemoveBlock(event);
 	}
 
 	//----------------------------------------------------------------------------------- onBlockBurn
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockBurn(BlockBurnEvent event)
 	{
 		autoRemoveBlock(event);
 	}
 
 	//--------------------------------------------------------------------------------- onBlockDamage
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockDamage(BlockDamageEvent event)
 	{
 		Block block = event.getBlock();
@@ -73,21 +75,21 @@ public class RealBlockListener extends BlockListener
 	}
 
 	//----------------------------------------------------------------------------------- onBlockFade
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockFade(BlockFadeEvent event)
 	{
 		autoRemoveBlock(event);
 	}
 
 	//--------------------------------------------------------------------------------- onBlockIgnite
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockIgnite(BlockIgniteEvent event)
 	{
 		autoRemoveBlock(event);
 	}
 
 	//---------------------------------------------------------------------------------- onBlockPlace
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockPlace(BlockPlaceEvent event)
 	{
 		Block block = event.getBlock();
@@ -105,7 +107,7 @@ public class RealBlockListener extends BlockListener
 	}
 
 	//--------------------------------------------------------------------------------- onBlockSpread
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockSpread(BlockSpreadEvent event)
 	{
 		autoRemoveBlock(event);

@@ -3,14 +3,16 @@ package fr.crafter.tickleman.realviewdonttouch;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 //############################################################################## RealPlayerListener
-public class RealPlayerListener extends PlayerListener
+public class RealPlayerListener implements Listener
 {
 
 	RealViewDontTouchPlugin plugin;
@@ -22,7 +24,7 @@ public class RealPlayerListener extends PlayerListener
 	}
 
 	//------------------------------------------------------------------------------ onPlayerInteract
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
 		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
@@ -42,14 +44,14 @@ public class RealPlayerListener extends PlayerListener
 	}
 
 	//--------------------------------------------------------------------------------- onPlayerLogin
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerLogin(PlayerLoginEvent event)
 	{
 		plugin.getWaitForClick().remove(event.getPlayer());
 	}
 
 	//---------------------------------------------------------------------------------- onPlayerQuit
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerQuit(PlayerQuitEvent event)
 	{
 		plugin.getWaitForClick().remove(event.getPlayer());

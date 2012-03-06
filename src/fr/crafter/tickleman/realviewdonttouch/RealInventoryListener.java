@@ -1,11 +1,12 @@
 package fr.crafter.tickleman.realviewdonttouch;
 
-import org.bukkit.Location;
-import org.getspout.spoutapi.event.inventory.InventoryClickEvent;
-import org.getspout.spoutapi.event.inventory.InventoryListener;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 //########################################################################### RealInventoryListener
-public class RealInventoryListener extends InventoryListener
+public class RealInventoryListener implements Listener
 {
 
 	RealViewDontTouchPlugin plugin;
@@ -17,15 +18,18 @@ public class RealInventoryListener extends InventoryListener
 	}
 
 	//------------------------------------------------------------------------------ onInventoryClick
-	@Override
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onInventoryClick(InventoryClickEvent event)
 	{
 		plugin.getLog().debug("click");
-		Location location = event.getLocation();
+		// todo : know where is the chest
+		/*
+		Location location = event.getInventory();
 		if ((location != null) && plugin.getBlockList().isViewOnly(location)) {
 			event.getPlayer().sendMessage(plugin.tr("This chest is view-only"));
 			event.setCancelled(true);
 		}
+		*/
 	}
 
 }
