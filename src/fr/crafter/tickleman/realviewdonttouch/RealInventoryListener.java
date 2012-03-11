@@ -1,5 +1,8 @@
 package fr.crafter.tickleman.realviewdonttouch;
 
+import org.bukkit.Location;
+import org.bukkit.block.BlockState;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -22,14 +25,16 @@ public class RealInventoryListener implements Listener
 	public void onInventoryClick(InventoryClickEvent event)
 	{
 		plugin.getLog().debug("click");
-		// todo : know where is the chest
-		/*
-		Location location = event.getInventory();
-		if ((location != null) && plugin.getBlockList().isViewOnly(location)) {
-			event.getPlayer().sendMessage(plugin.tr("This chest is view-only"));
-			event.setCancelled(true);
+		if (
+			event.getWhoClicked() instanceof Player
+			&& event.getInventory().getHolder() instanceof BlockState
+		) {
+			Location location = ((BlockState) event.getInventory().getHolder()).getLocation();
+			if ((location != null) && plugin.getBlockList().isViewOnly(location)) {
+				((Player) event.getWhoClicked()).sendMessage(plugin.tr("This chest is view-only"));
+				event.setCancelled(true);
+			}
 		}
-		*/
 	}
 
 }

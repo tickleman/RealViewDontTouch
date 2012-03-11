@@ -3,7 +3,7 @@ main: fr.crafter.tickleman.realviewdonttouch.RealViewDontTouchPlugin
 version: 0.10
 website: http://plugins.crafter.fr/tickleman/RealViewDontTouch/
 author: tickleman
-depend: [RealPlugin,Spout]
+depend: [RealPlugin]
 commands:
   viewonly:
     description: Content can only be viewed, not touched
